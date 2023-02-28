@@ -1,0 +1,67 @@
+{% extends "layouts/main.html" %}
+
+{% block head %}
+<script src="//cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+
+{% block content%}
+
+
+</body>
+
+<h5>{{greetings}}</h5>
+
+<div>
+    <div id="bank"></div>
+
+    <div class="container">
+        <div class="row">
+            <!-- LEFT SIDE -->
+            <div class="col-6">
+                {% for id in ids %}
+                <div id="{{id}}"></div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <script type="text/javascript">
+            var graphs = {{graphJSON | safe}};
+            var ids = {{ids | safe}};
+            for(var i in graphs) {
+                Plotly.plot(ids[i], // the ID of the div, created above
+                    graphs[i].data,
+                    graphs[i].layout || {});
+            }
+        </script>
+    </footer>
+
+            <script>
+                //Parse your Json variable here
+                var graphs = {{ plotly_plot | safe }};
+                Plotly.plot( 'bank', graphs, {});
+
+                var graphs1 = {{ plotly_plot1 | safe }};
+                Plotly.plot( 'bank', graphs1, {});
+
+                var graphs2 = {{ plotly_plot2 | safe }};
+                Plotly.plot( 'bank', graphs2, {});
+
+                var graphs3 = {{ plotly_plot3 | safe }};
+                Plotly.plot( 'bank', graphs, {});
+
+                var graph4 = {{ plotly_plot4 | safe }};
+                Plotly.plot( 'bank', graphs4, {});
+
+                var graph5 = {{ plotly_plot5 | safe }};
+                Plotly.plot( 'bank', graphs5, {});
+
+            </script>
+</div>
+
+</body>
+
+
+
+{% endblock %}
